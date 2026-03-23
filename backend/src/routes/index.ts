@@ -2,6 +2,7 @@
 
 import { Router } from "express";
 import { randomUUID } from "node:crypto";
+import { rateLimiter } from "../middlewares/rateLimitMiddleware.js";
 
 export const router = Router();
 
@@ -22,3 +23,6 @@ router.get("/user", (req, res) => {
 
   res.status(200).json(user);
 });
+
+// Aplicação de Rate Limiter por rota -> Login sempre precisa
+// router.post("/login", rateLimiter, loginController);
