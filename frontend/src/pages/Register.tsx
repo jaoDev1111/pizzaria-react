@@ -1,14 +1,14 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import BaseButton from "../components/base/BaseButton";
-import BaseInput from "../components/base/BaseInput";
+import BaseButton from "../components/ui/BaseButton";
+import BaseInput from "../components/ui/BaseInput";
 
 import {
     registerSchema,
-    type RegisterFormData,
-} from "../schemas/registerSchema";
-import BaseLinkButton from "../components/base/BaseLinkButton";
+    type RegisterFormDataType,
+} from "../schemas/auth/register.schema";
+import BaseLinkButton from "../components/ui/BaseLinkButton";
 import { Link } from "react-router";
 
 /**
@@ -25,7 +25,7 @@ const Register = () => {
         handleSubmit,
         formState: { errors, isSubmitting },
         reset,
-    } = useForm<RegisterFormData>({
+    } = useForm<RegisterFormDataType>({
         resolver: zodResolver(registerSchema),
         defaultValues: {
             name: "",
@@ -39,7 +39,7 @@ const Register = () => {
      * Executado após validação bem-sucedida.
      * Responsável por enviar dados para API.
      */
-    const onSubmit = async (data: RegisterFormData) => {
+    const onSubmit = async (data: RegisterFormDataType) => {
         console.log("Dados Enviados para /register:", data);
 
         // Aqui você integraria com API

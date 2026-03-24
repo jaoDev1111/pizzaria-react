@@ -3,8 +3,9 @@ import { z } from "zod";
 
 /**
  * Schema de registro com senha forte.
- * Responsável por garantir regras de segurança antes do envio.
+ * Responsável por garantir regras de segurança antes do submit. (Digitando no formulário)
  */
+
 export const registerSchema = z
     .object({
         name: z.string().min(2, "Nome deve ter pelo menos 2 caracteres").trim(),
@@ -29,4 +30,4 @@ export const registerSchema = z
         path: ["confirmPassword"],
     });
 
-export type RegisterFormData = z.infer<typeof registerSchema>;
+export type RegisterFormDataType = z.infer<typeof registerSchema>;

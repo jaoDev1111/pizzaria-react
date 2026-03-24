@@ -1,7 +1,7 @@
 // Responsável pelo layout principal da aplicação. Header, Conteúdo e Footer.
 
 import { Outlet } from "react-router";
-import Header from "./Header/Header";
+import Header from "../common/Header/Header";
 
 const MainLayout = () => {
     return (

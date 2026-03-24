@@ -1,4 +1,4 @@
-import BaseLinkButton from "../../base/BaseLinkButton";
+import BaseLinkButton from "../../ui/BaseLinkButton";
 
 /**
  * HeaderNav

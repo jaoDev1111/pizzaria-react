@@ -3,7 +3,7 @@ import { z } from "zod";
 
 /**
  * Schema de validação do login.
- * Responsável por garantir formato correto antes do submit.
+ * Responsável por garantir formato correto antes do submit (Digitando no formulário)
  */
 export const loginSchema = z.object({
     email: z.email("Email inválido").toLowerCase().trim(),
@@ -12,4 +12,4 @@ export const loginSchema = z.object({
 });
 
 // Inferindo tipo do schema para uso no formulário
-export type LoginFormData = z.infer<typeof loginSchema>;
+export type LoginFormDataType = z.infer<typeof loginSchema>;

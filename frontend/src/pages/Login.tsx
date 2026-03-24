@@ -1,12 +1,18 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import BaseButton from "../components/base/BaseButton";
-import BaseInput from "../components/base/BaseInput";
+import BaseButton from "../components/ui/BaseButton";
+import BaseInput from "../components/ui/BaseInput";
 
-import { loginSchema, type LoginFormData } from "../schemas/loginSchema";
+import {
+    loginSchema,
+    type LoginFormDataType,
+} from "../schemas/auth/login.schema";
 import { Link } from "react-router";
-import BaseLinkButton from "../components/base/BaseLinkButton";
+import BaseLinkButton from "../components/ui/BaseLinkButton";
+
+import { AxiosError } from "axios";
+import { authService } from "../services/auth/auth.service";
 
 /**
  * Página de Login.
@@ -18,7 +24,7 @@ const Login = () => {
         handleSubmit,
         formState: { errors },
         reset,
-    } = useForm<LoginFormData>({
+    } = useForm<LoginFormDataType>({
         resolver: zodResolver(loginSchema),
         defaultValues: {
             email: "",
@@ -26,11 +32,23 @@ const Login = () => {
         },
     });
 
-    const onSubmit = (data: LoginFormData) => {
-        console.log("Dados do formulário:", data);
-        // Aqui você pode integrar com sua API de autenticação
-        // await api.post("/login", data)
-        reset();
+    const onSubmit = async (data: LoginFormDataType): Promise<void> => {
+        try {
+            await authService.login(data);
+            // Exemplo: redirecionamento
+            // navigate("/dashboard");
+
+            reset();
+        } catch (error) {
+            if (error instanceof AxiosError) {
+                const errorMessage =
+                    error.response?.data?.message || "Authentication failed";
+
+                console.error("API Error:", errorMessage);
+            } else {
+                console.error("Unexpected error:", error);
+            }
+        }
     };
 
     return (

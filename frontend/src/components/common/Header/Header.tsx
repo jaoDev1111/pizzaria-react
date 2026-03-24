@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
 import HeaderNav from "./HeaderNav";
-import { Container } from "../Container";
+
 import { Link } from "react-router";
+import { Container } from "../../layout/Container";
 
 interface HeaderProps {
     logo: ReactNode;
