@@ -3,6 +3,7 @@ import { app } from "./app.js";
 import { connection } from "./lib/prisma.js";
 
 const PORT = 3000;
+
 connection();
 
 app.listen(PORT, () => {

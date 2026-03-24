@@ -8,6 +8,10 @@ const adapter = new PrismaPg({ connectionString });
 export const prisma = new PrismaClient({ adapter });
 
 export async function connection() {
-  await prisma.$connect();
-  console.log("💾 Start connection with DB");
+  try {
+    await prisma.$connect();
+    console.log("💾 Start connection with DB");
+  } catch (error) {
+    console.log(error);
+  }
 }
